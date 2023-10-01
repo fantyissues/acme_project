@@ -28,10 +28,10 @@ def delete_birthday(request, pk):
     if request.method == 'POST':
         instance.delete()
         return redirect('birthday:list')
-    return render(request, 'birthday/birthday.html', context)    
+    return render(request, 'birthday/birthday.html', context)
 
 
 def birthday_list(request):
-    birthdays = Birthday.objects.all()
+    birthdays = Birthday.objects.order_by('birthday')
     context = {'birthdays': birthdays}
     return render(request, 'birthday/birthday_list.html', context)
