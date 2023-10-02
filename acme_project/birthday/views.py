@@ -7,25 +7,27 @@ from .models import Birthday
 
 class BirthdayMixin:
     model = Birthday
+    success_url = reverse_lazy('birthday:list')
+
+
+class BirthdayFormMixin:
     form_class = BirthdayForm
     template_name = 'birthday/birthday.html'
-    success_url = reverse_lazy('birthday:list')
+
+
+class BirthdayCreateView(BirthdayMixin, BirthdayFormMixin, CreateView):
+    pass
+
+
+class BirthdayUpdateView(BirthdayMixin, BirthdayFormMixin, UpdateView):
+    pass
+
+
+class BirthdayDeleteView(BirthdayMixin, DeleteView):
+    pass
 
 
 class BirthdayListView(ListView):
     model = Birthday
     ordering = 'id'
     paginate_by = 10
-
-
-class BirthdayCreateView(BirthdayMixin, CreateView):
-    pass
-
-
-class BirthdayUpdateView(BirthdayMixin, UpdateView):
-    pass
-
-
-class BirthdayDeleteView(DeleteView):
-    model = Birthday
-    success_url = reverse_lazy('birthday:list')
