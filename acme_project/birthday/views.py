@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 
 from .forms import BirthdayForm
 from .models import Birthday
@@ -14,6 +14,13 @@ class BirthdayListView(ListView):
 
 
 class BirthdayCreateView(CreateView):
+    model = Birthday
+    form_class = BirthdayForm
+    template_name = 'birthday/birthday.html'
+    success_url = reverse_lazy('birthday:list')
+
+
+class BirthdayUpdateView(UpdateView):
     model = Birthday
     form_class = BirthdayForm
     template_name = 'birthday/birthday.html'
