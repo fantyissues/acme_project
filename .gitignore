@@ -131,4 +131,7 @@ dmypy.json
 .idea
 
 # Media files
-*/media/
+media/
+
+# Email files
+sent_emails
