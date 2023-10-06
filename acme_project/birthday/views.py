@@ -22,6 +22,9 @@ class BirthdayUpdateDeleteMixin:
 
 class BirthdayListView(ListView):
     model = Birthday
+    queryset = Birthday.objects.prefetch_related(
+        'tags'
+    ).select_related('author')
     ordering = 'id'
     paginate_by = 10
 
